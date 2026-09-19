@@ -1,0 +1,968 @@
+/* `.pixel-page` is the full-page wrapper used to keep the black canvas continuous. */
+.pixel-page {
+  /* `static` keeps the page wrapper in normal flow and documents the default positioning model. */
+  position: static;
+  min-height: 100vh;
+  background: var(--pixel-black);
+}
+
+.pixel-fixed-contact {
+  /* `fixed` keeps this useful contact shortcut visible during scrolling. */
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 120;
+  padding: 8px 14px;
+  border: 1px solid var(--pixel-lilac);
+  background: var(--pixel-purple);
+  color: var(--pixel-white);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.pixel-fixed-contact:hover,
+.pixel-fixed-contact:focus-visible {
+  background: var(--pixel-lilac);
+  color: var(--pixel-black);
+}
+
+.pixel-site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: 40px;
+}
+
+/* `.pixel-site-branding` anchors the text brand independently from the right-aligned menu. */
+.pixel-site-branding {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  height: 40px;
+  padding-left: 40px;
+}
+
+.pixel-brand {
+  color: var(--pixel-white);
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 40px;
+  text-transform: uppercase;
+}
+
+.pixel-brand:hover,
+.pixel-brand:focus-visible {
+  color: var(--pixel-light);
+}
+
+.pixel-navigation {
+  position: relative;
+  height: 40px;
+}
+
+.pixel-desktop-nav-list {
+  /* Flexbox keeps the navigation list aligned and allows list items to wrap on narrow screens. */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-wrap: wrap;
+  height: 40px;
+  margin: 0;
+  padding-right: 20px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pixel-nav-item,
+.pixel-nav-details {
+  flex: 0 1 auto;
+  position: relative;
+  height: 40px;
+}
+
+.pixel-nav-item {
+  list-style: none;
+}
+
+/* `>` selects only the direct summary child so nested menu content is unaffected. */
+.pixel-nav-link,
+.pixel-nav-details > summary {
+  display: block;
+  height: 40px;
+  padding: 0 30px;
+  color: var(--pixel-white);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  line-height: 40px;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+/* The direct-child selector styles the clickable details label itself. */
+.pixel-nav-details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.pixel-nav-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* `:hover` and `:focus-visible` expose the active menu state to pointer and keyboard users. */
+.pixel-nav-link:hover,
+.pixel-nav-link:focus-visible,
+.pixel-nav-details > summary:hover,
+.pixel-nav-details > summary:focus-visible,
+.pixel-nav-details[open] > summary,
+.pixel-nav-link-active {
+  background: var(--pixel-purple);
+  color: var(--pixel-white);
+}
+
+.pixel-nav-home {
+  min-width: 70px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.pixel-nav-dropdown,
+.pixel-nav-small-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 50;
+  visibility: hidden;
+  opacity: 0;
+  background: var(--pixel-purple);
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+/* `:focus-within` and `[open]` keep native details menus open while their content is used. */
+.pixel-nav-details:hover .pixel-nav-dropdown,
+.pixel-nav-details:focus-within .pixel-nav-dropdown,
+.pixel-nav-details[open] .pixel-nav-dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+
+.pixel-nav-dropdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 540px;
+  gap: 15px;
+  padding: 20px;
+}
+
+.pixel-dropdown-card {
+  display: flex;
+  gap: 12px;
+  min-height: 110px;
+  color: var(--pixel-white);
+}
+
+.pixel-dropdown-card-wide {
+  grid-column: 1 / -1;
+}
+
+.pixel-dropdown-card img {
+  width: 84px;
+  height: 84px;
+  flex: 0 0 auto;
+  object-fit: cover;
+}
+
+.pixel-dropdown-card p {
+  margin: 0;
+  color: var(--pixel-light);
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.pixel-dropdown-card .pixel-dropdown-title {
+  margin: 0 0 4px;
+  color: var(--pixel-white);
+  font-size: 18px;
+  line-height: 1.1;
+  text-transform: none;
+}
+
+.pixel-dropdown-card span {
+  color: var(--pixel-lilac);
+  font-size: 22px;
+}
+
+.pixel-nav-small-dropdown {
+  display: flex;
+  width: 180px;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.pixel-nav-small-dropdown a {
+  padding: 7px 20px;
+  color: var(--pixel-white);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.pixel-nav-details:hover .pixel-nav-small-dropdown,
+.pixel-nav-details:focus-within .pixel-nav-small-dropdown,
+.pixel-nav-details[open] .pixel-nav-small-dropdown {
+  visibility: visible;
+  opacity: 1;
+}
+
+.pixel-mobile-menu {
+  display: none;
+}
+
+.pixel-menu-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 49px;
+  height: 40px;
+  border: 0;
+  border-radius: 0;
+  background: var(--pixel-purple);
+  color: var(--pixel-white);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 40px;
+  list-style: none;
+  text-align: center;
+}
+
+.pixel-menu-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.pixel-menu-icon::before {
+  content: "☰";
+}
+
+.pixel-mobile-menu[open] .pixel-menu-icon::before {
+  content: "×";
+}
+
+.pixel-mobile-nav {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: stretch;
+  width: 300px;
+  flex-direction: column;
+  gap: 0;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 20px 0 0;
+  background: var(--pixel-purple);
+  box-shadow: 0 10px 20px var(--pixel-purple);
+  list-style: none;
+}
+
+.pixel-mobile-nav li {
+  list-style: none;
+}
+
+.pixel-mobile-nav a {
+  min-height: 42px;
+  padding: 0 25px;
+  color: var(--pixel-white);
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 42px;
+}
+
+.pixel-mobile-nav a:hover,
+.pixel-mobile-nav a:focus-visible {
+  background: var(--pixel-purple);
+  color: var(--pixel-white);
+}
+
+.pixel-hero {
+  position: relative;
+  height: 320px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+/* `::after` adds the fade at the bottom of the hero without extra markup. */
+.pixel-hero::after {
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 1;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent 0%, var(--pixel-black) 95%);
+  content: "";
+}
+
+.pixel-hero-background {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/pixel/hero.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+  filter: blur(4px);
+  opacity: 0.75;
+  transform: scale(1.03);
+}
+
+.pixel-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 840px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Teko is the display family; Share Tech Mono and Arial Narrow provide readable fallbacks. */
+.pixel-hero-title {
+  position: absolute;
+  top: 120px;
+  left: 0;
+  max-width: 840px;
+  margin: 0;
+  padding-left: 140px;
+  color: var(--pixel-white);
+  font-family: "Teko Local", "Share Tech Mono Local", "Arial Narrow", sans-serif;
+  font-size: 70px;
+  font-weight: 400;
+  letter-spacing: 1.4px;
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.pixel-hero-title span {
+  display: block;
+}
+
+.pixel-cursor {
+  display: inline !important;
+  animation: pixel-blink 1s steps(1, end) infinite;
+}
+
+@keyframes pixel-blink {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.pixel-content-wrap {
+  /* `margin: auto` centers readable content while padding protects it on small screens. */
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.pixel-article {
+  min-height: 500px;
+  margin-bottom: 25.5px;
+}
+
+.pixel-section {
+  margin-top: 50px;
+  padding: 0 20px;
+}
+
+.pixel-section h2,
+.pixel-section p {
+  margin-top: 0;
+}
+
+.pixel-section h2 {
+  margin-bottom: 29.05px;
+  color: var(--pixel-white);
+  font-family: "Teko Local", "Share Tech Mono Local", "Arial Narrow", sans-serif;
+  font-size: 35px;
+  font-weight: 300;
+  letter-spacing: 1.75px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.pixel-section p {
+  margin-bottom: 25.5px;
+  color: var(--pixel-white);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.pixel-pricing-section {
+  margin-top: 50px;
+  padding-bottom: 0;
+}
+
+.pixel-pricing-table-wrap {
+  width: 100%;
+  margin: 35px 0 0;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.pixel-pricing-table {
+  width: 100%;
+  min-width: 720px;
+  border-spacing: 8px 0;
+  border-collapse: separate;
+  color: var(--pixel-white);
+  font-size: 18px;
+  text-align: center;
+}
+
+.pixel-pricing-table th,
+.pixel-pricing-table td {
+  padding: 18px 14px;
+}
+
+.pixel-pricing-table thead th {
+  border: 1px solid var(--pixel-light);
+  border-bottom: 0;
+  border-radius: 32px 32px 0 0;
+  background: var(--pixel-black);
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.pixel-pricing-table thead th:first-child {
+  background: var(--pixel-white);
+  color: var(--pixel-black);
+}
+
+.pixel-pricing-table tbody th {
+  width: 23%;
+  background: var(--pixel-black);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.pixel-pricing-table tbody td {
+  border-left: 1px solid var(--pixel-purple);
+  background: var(--pixel-black);
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.pixel-pricing-table tbody tr:first-child td {
+  background: linear-gradient(180deg, var(--pixel-lilac), var(--pixel-purple));
+}
+
+.pixel-pricing-table tbody tr:last-child th,
+.pixel-pricing-table tbody tr:last-child td {
+  border-radius: 0 0 32px 32px;
+  padding-bottom: 30px;
+}
+
+.pixel-pricing-note {
+  margin: 18px 0 0;
+  color: var(--pixel-light) !important;
+  font-size: 14px !important;
+  text-align: center;
+}
+
+.pixel-vip-note {
+  margin: 24px 0 0;
+  color: var(--pixel-white) !important;
+  font-size: 18px !important;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pixel-devices-section {
+  margin-top: 75px;
+}
+
+.pixel-devices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 35px;
+}
+
+.pixel-device-card {
+  min-height: 470px;
+  padding: 30px 22px;
+  border: 1px solid var(--pixel-light);
+  border-radius: 0 0 36px 36px;
+  background: linear-gradient(145deg, var(--pixel-purple) 0%, var(--pixel-black) 100%);
+  color: var(--pixel-white);
+  text-align: center;
+}
+
+/* `:nth-child` gives the three device tiers their distinct palette positions. */
+.pixel-device-card:nth-child(2) {
+  background: linear-gradient(145deg, var(--pixel-lilac) 0%, var(--pixel-purple) 100%);
+}
+
+.pixel-device-card:nth-child(3) {
+  background: linear-gradient(145deg, var(--pixel-light) 0%, var(--pixel-purple) 100%);
+}
+
+.pixel-device-card h3 {
+  margin: 0 0 28px;
+  font-size: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.pixel-device-card ul {
+  display: grid;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pixel-device-card li {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+@media (max-width: 800px) {
+  .pixel-devices-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pixel-device-card {
+    min-height: auto;
+  }
+}
+
+/* `.pixel-slider` contains the CSS-only radio state and its six visual panels. */
+.pixel-slider {
+  position: relative;
+  width: min(800px, 100%);
+  height: 600px;
+  margin: 50px auto;
+  padding-left: 20px;
+  overflow: visible;
+}
+
+.pixel-slider-state {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.pixel-slide {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  height: 100%;
+  padding: 0 60px 0 50px;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), z-index 1s ease;
+}
+
+/* The slide IDs are radio states; `~` reveals the matching panel without JavaScript. */
+#slide-1:checked ~ .pixel-slide-1,
+#slide-2:checked ~ .pixel-slide-2,
+#slide-3:checked ~ .pixel-slide-3,
+#slide-4:checked ~ .pixel-slide-4,
+#slide-5:checked ~ .pixel-slide-5,
+#slide-6:checked ~ .pixel-slide-6 {
+  z-index: 19;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pixel-slide-figure {
+  position: absolute;
+  inset: 0 60px 0 50px;
+  z-index: 7;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.pixel-slide-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-position: 50%;
+  background-size: cover;
+}
+
+.pixel-slide-image-1 {
+  background-image: url("../assets/pixel/slide-1.png");
+}
+
+.pixel-slide-image-2 {
+  background-image: url("../assets/pixel/slide-2.png");
+}
+
+.pixel-slide-image-3 {
+  background-image: url("../assets/pixel/slide-3.png");
+}
+
+.pixel-slide-image-4 {
+  background-image: url("../assets/pixel/slide-4.png");
+}
+
+.pixel-slide-image-5 {
+  background-image: url("../assets/pixel/slide-5.png");
+}
+
+.pixel-slide-image-6 {
+  background-image: url("../assets/pixel/slide-6.png");
+}
+
+.pixel-slider-nav {
+  /* `translateY(-50%)` centers the controls vertically beside the slider. */
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translateY(-50%);
+}
+
+.pixel-slider-controls {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Each radio ID exposes only the matching Prev/Next control pair. */
+#slide-1:checked ~ .pixel-slider-nav .pixel-slider-controls-1,
+#slide-2:checked ~ .pixel-slider-nav .pixel-slider-controls-2,
+#slide-3:checked ~ .pixel-slider-nav .pixel-slider-controls-3,
+#slide-4:checked ~ .pixel-slider-nav .pixel-slider-controls-4,
+#slide-5:checked ~ .pixel-slider-nav .pixel-slider-controls-5,
+#slide-6:checked ~ .pixel-slider-nav .pixel-slider-controls-6 {
+  display: flex;
+}
+
+.pixel-slider-control {
+  position: relative;
+  padding: 0 10px;
+  color: var(--pixel-lilac);
+  cursor: pointer;
+  font-size: 25.5px;
+  line-height: 1;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  transition: color 0.5s ease;
+}
+
+.pixel-slider-control::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--pixel-light);
+  content: "";
+  transition: width 0.4s ease;
+}
+
+.pixel-slider-control:hover,
+.pixel-slider-control:focus-visible {
+  color: var(--pixel-light);
+}
+
+.pixel-slider-control:hover::after,
+.pixel-slider-control:focus-visible::after {
+  width: 100%;
+}
+
+.pixel-gallery {
+  display: grid;
+  width: 90%;
+  max-width: 1100px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto 25.5px;
+}
+
+/* `float: left` lets the paragraph wrap around the image in this coursework demo. */
+.pixel-float-demo {
+  width: min(840px, 100%);
+  margin: 50px auto;
+  padding: 0 20px;
+  color: var(--pixel-white);
+}
+
+.pixel-float-demo img {
+  float: left;
+  width: 180px;
+  height: 130px;
+  margin: 0 24px 12px 0;
+  object-fit: cover;
+}
+
+/* `clear: both` starts the following content below either possible float. */
+.pixel-clear-demo {
+  clear: both;
+}
+
+.pixel-gallery-item-wrapper {
+  height: 220px;
+  padding: 0 10px 10px 0;
+}
+
+.pixel-gallery-item {
+  width: 100%;
+  height: 210px;
+  border-bottom: 1px solid var(--pixel-lilac);
+  background-position: 50% 50%;
+  background-size: cover;
+  transition: opacity 0.25s ease;
+}
+
+.pixel-gallery-item:hover {
+  opacity: 0.8;
+}
+
+.pixel-gallery-image-1 {
+  background-image: url("../assets/pixel/slide-1.png");
+}
+
+.pixel-gallery-image-2 {
+  background-image: url("../assets/pixel/slide-2.png");
+}
+
+.pixel-gallery-image-3 {
+  background-image: url("../assets/pixel/slide-3.png");
+}
+
+.pixel-gallery-image-4 {
+  background-image: url("../assets/pixel/slide-4.png");
+}
+
+.pixel-gallery-image-5 {
+  background-image: url("../assets/pixel/slide-5.png");
+}
+
+.pixel-gallery-image-6 {
+  background-image: url("../assets/pixel/slide-6.png");
+}
+
+.pixel-site-footer {
+  padding: 50px 0 0;
+  background: var(--pixel-black);
+  color: var(--pixel-light);
+}
+
+.pixel-footer-inner {
+  display: flex;
+  width: 90%;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.pixel-footer-item {
+  flex: 1;
+  min-width: 0;
+  padding: 0 20px 20px;
+}
+
+.pixel-footer-rule {
+  position: relative;
+  height: 10px;
+  margin: 0 0 26.72px;
+  padding: 10px 20px 0;
+  border-top: 1px solid var(--pixel-lilac);
+}
+
+/* `::before` draws the small angled footer marker. */
+.pixel-footer-rule::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-width: 1em 1em 0 0;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: var(--pixel-lilac);
+  content: "";
+}
+
+.pixel-footer-item p.pixel-footer-location {
+  margin: 0 0 0.3em;
+  color: var(--pixel-light);
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.4;
+  text-transform: none;
+}
+
+.pixel-footer-item p {
+  margin: 0 0 1.2em;
+  color: var(--pixel-light);
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.pixel-footer-item small {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.pixel-footer-item > a,
+.pixel-footer-legal a {
+  color: var(--pixel-lilac);
+}
+
+.pixel-footer-social-label {
+  color: var(--pixel-lilac);
+}
+
+.pixel-footer-item > a:hover,
+.pixel-footer-item > a:focus-visible,
+.pixel-footer-legal a:hover,
+.pixel-footer-legal a:focus-visible {
+  color: var(--pixel-light);
+}
+
+.pixel-button {
+  position: relative;
+  display: inline-block;
+  padding: 14px 30px 0;
+  background: var(--pixel-purple);
+  color: var(--pixel-white);
+  font-size: 14px;
+  letter-spacing: 3px;
+  line-height: 23.8px;
+  text-transform: uppercase;
+}
+
+/* `::after` extends the button into the angled lower edge. */
+.pixel-button::after {
+  position: absolute;
+  right: 1em;
+  bottom: -1em;
+  left: 0;
+  border-width: 0.5em;
+  border-style: solid;
+  border-color: var(--pixel-purple);
+  content: "";
+}
+
+/* `::before` completes the button's second angled edge. */
+.pixel-button::before {
+  position: absolute;
+  right: 0;
+  bottom: -1em;
+  border-width: 1em 1em 0 0;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: var(--pixel-purple);
+  content: "";
+}
+
+.pixel-button:hover,
+.pixel-button:focus-visible {
+  background: var(--pixel-lilac);
+  color: var(--pixel-white);
+}
+
+.pixel-button:hover::after,
+.pixel-button:focus-visible::after {
+  border-color: var(--pixel-lilac);
+}
+
+.pixel-button:hover::before,
+.pixel-button:focus-visible::before {
+  border-top-color: var(--pixel-lilac);
+}
+
+@media (max-width: 1000px) {
+  .pixel-desktop-nav-list {
+    display: none;
+  }
+
+  .pixel-mobile-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 40;
+    display: block;
+    width: 300px;
+    height: 40px;
+  }
+
+  .pixel-mobile-menu[open] {
+    height: auto;
+  }
+
+  .pixel-hero {
+    padding-bottom: 40px;
+  }
+
+  .pixel-hero-title {
+    padding-left: 20px;
+    font-size: 70px;
+  }
+}
+
+@media (max-width: 800px) {
+  .pixel-hero {
+    height: 420px;
+  }
+
+  .pixel-hero-title {
+    top: 200px;
+    margin-right: 20px;
+    font-size: 60px;
+    letter-spacing: 0;
+  }
+
+  .pixel-gallery {
+    display: block;
+    width: 100%;
+    padding: 0 40px;
+  }
+
+  .pixel-gallery-item-wrapper {
+    height: 210px;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  .pixel-gallery-item {
+    height: 200px;
+  }
+
+  .pixel-footer-inner {
+    display: block;
+  }
+
+  .pixel-footer-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pixel-footer-rule {
+    text-align: left;
+  }
+}
+
+@media (max-width: 600px) {
+  .pixel-slider-control {
+    font-size: 22px;
+  }
+
+  .pixel-section h2 {
+    font-size: 35px;
+  }
+}
